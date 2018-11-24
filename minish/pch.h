@@ -7,6 +7,7 @@
 #include <fstream>
 #include <string>
 #include <filesystem>
+#include <csignal>
 
 #pragma warning(disable:4996)
 

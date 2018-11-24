@@ -2,11 +2,13 @@
 #include "shFunction.h"
 
 using namespace std;
+namespace fs = experimental::filesystem;
 
 vector<string> cmd_parse(string);
 
 int main(int argc, char argv[])
 {
+	signal(SIGINT, SIG_IGN);
 	cout << "Minish version 1.0.0" << endl;
 	cout << "copyrigrht@Jinwook Park" << endl;
 	shFunction func;
@@ -16,13 +18,14 @@ int main(int argc, char argv[])
 	{
 		string input;
 		vector<string> parsed_input;
+		fs::path cpath = fs::current_path();
 
-		cout << ">> ";
+		cout << cpath << "$" << " ";
 
-		cin >> input;
-		cout << input << endl;
-
+		getline(cin, input); 
 		parsed_input = cmd_parse(input);
+
+		cout << parsed_input.at(0) << endl;
 
 		if (input.compare("cd") == 0) {
 			cout << "You try to cd." << endl;
@@ -63,6 +66,7 @@ vector<string> cmd_parse(string str)
 		parsed.push_back(token);
 		str.erase(0, pos + separator.length());
 	}
+	parsed.push_back(str);
 
 	return parsed;
 }
