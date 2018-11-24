@@ -6,8 +6,14 @@
 #include <cstdlib>
 #include <fstream>
 #include <string>
-#include <filesystem>
+#include <cstring>
 #include <csignal>
+#include <vector>
+#include <dirent.h>
+#include <unistd.h>
+#include <cctype>
+#include <sys/wait.h>
+#include <algorithm>
 
 #pragma warning(disable:4996)
 
